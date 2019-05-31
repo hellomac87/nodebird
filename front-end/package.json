@@ -11,6 +11,7 @@
   "author": "hellomac87",
   "license": "MIT",
   "dependencies": {
+    "antd": "^3.19.1",
     "next": "^8.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
