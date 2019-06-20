@@ -1,0 +1,56 @@
+import React, { useCallback } from "react";
+import PropTypes from "prop-types";
+import Link from "next/link";
+import { Input, Button, Form } from "antd";
+import { userInput } from "../pages/signup";
+
+const LoginForm = props => {
+  const [id, onChangeId] = userInput("");
+  const [password, onChangePassword] = userInput("");
+
+  //   자식컴포넌트에 넘기는 함수는 무조건 useCallback 으로 감싸준다
+  const onSubmitForm = useCallback(
+    e => {
+      e.preventDefault();
+      console.log({
+        id,
+        password
+      });
+    },
+    [id, password]
+  );
+
+  return (
+    <Form onSubmit={onSubmitForm}>
+      <div>
+        <label htmlFor="user-id">아이디</label>
+        <br />
+        <Input name="user-id" value={id} onChange={onChangeId} required />
+      </div>
+      <div>
+        <label htmlFor="user-password">비밀번호</label>
+        <br />
+        <Input
+          name="user-password"
+          value={password}
+          onChange={onChangePassword}
+          required
+        />
+      </div>
+      <div>
+        <Button type="primary" htmlType="submit" loading={false}>
+          로그인
+        </Button>
+        <Link href="/signup">
+          <a>
+            <Button>회원가입</Button>
+          </a>
+        </Link>
+      </div>
+    </Form>
+  );
+};
+
+// LoginForm.propTypes = {};
+
+export default LoginForm;
