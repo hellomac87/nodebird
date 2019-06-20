@@ -198,6 +198,7 @@ var AppLayout = function AppLayout(_ref) {
     },
     __self: this
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Row"], {
+    gutter: 8,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 34
@@ -351,6 +352,9 @@ var LoginForm = function LoginForm(props) {
   }, [id, password]);
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Form"], {
     onSubmit: onSubmitForm,
+    style: {
+      padding: "10px"
+    },
     __source: {
       fileName: _jsxFileName,
       lineNumber: 24
