@@ -3,9 +3,14 @@ import Head from "next/head";
 import PropTypes from "prop-types";
 import AppLayout from "../components/AppLayout";
 
-const NodeBird = ({ Component }) => {
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import withRedux from "next-redux-wrapper";
+import reducer from "../reducers";
+
+const NodeBird = ({ Component, store }) => {
   return (
-    <>
+    <Provider store={store}>
       <Head>
         <title>NodeBird</title>
         <link
@@ -17,12 +22,17 @@ const NodeBird = ({ Component }) => {
       <AppLayout>
         <Component />
       </AppLayout>
-    </>
+    </Provider>
   );
 };
 
 NodeBird.propTypes = {
-  Component: PropTypes.func
+  Component: PropTypes.func,
+  state: PropTypes.object
 };
 
-export default NodeBird;
+export default withRedux((initialState, options) => {
+  const store = createStore(reducer, initialState);
+  // store customizing
+  return store;
+})(NodeBird);
