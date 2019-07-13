@@ -1,20 +1,33 @@
+const dummyUser = {
+  nickname: "haha",
+  posts: [],
+  followings: [],
+  followers: []
+};
 export const initialState = {
   isLoggedIn: false,
-  user: {}
+  // user: {
+  //   nickname: "haha",
+  //   posts: [{}, {}],
+  //   followings: ["aa", "bb"],
+  //   followers: ["cc", "dd"],
+  //   isLoggedIn: false
+  // }
+  user: null
 };
 
 // action constatns
 const LOG_IN = "LOG_IN";
 const LOG_OUT = "LOG_OUT";
 
-const loginAction = {
+export const loginAction = {
   type: LOG_IN,
   data: {
     nickname: "HELLO"
   }
 };
 
-const logoutAction = {
+export const logoutAction = {
   type: LOG_OUT
 };
 
@@ -24,7 +37,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: true,
-        user: action.data
+        // user: action.data
+        user: dummyUser
       };
     }
 
@@ -32,7 +46,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: true,
-        user: {}
+        user: null
       };
     }
 

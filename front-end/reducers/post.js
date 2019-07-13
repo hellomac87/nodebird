@@ -1,5 +1,17 @@
 export const initialState = {
-  mainPosts: []
+  mainPosts: [
+    {
+      createdAt: "2009.01.01",
+      User: {
+        id: 1,
+        nickname: "나"
+      },
+      content: "첫번째 게시글",
+      img:
+        "https://slack-files2.s3-us-west-2.amazonaws.com/avatars/2017-12-19/288981919427_f45f04edd92902a96859_512.png"
+    }
+  ],
+  imagePath: []
 };
 
 const ADD_POST = "ADD_POST";
