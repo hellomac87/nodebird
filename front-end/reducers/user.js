@@ -2,7 +2,8 @@ const dummyUser = {
   nickname: "haha",
   posts: [],
   followings: [],
-  followers: []
+  followers: [],
+  signUpData: {}
 };
 export const initialState = {
   isLoggedIn: false,
@@ -17,8 +18,16 @@ export const initialState = {
 };
 
 // action constatns
+export const SIGN_UP = "SIGN_UP";
 const LOG_IN = "LOG_IN";
 const LOG_OUT = "LOG_OUT";
+
+export const signupAction = data => {
+  return {
+    type: SIGN_UP,
+    data: data
+  };
+};
 
 export const loginAction = {
   type: LOG_IN,
@@ -49,6 +58,11 @@ const reducer = (state = initialState, action) => {
         user: null
       };
     }
+    case SIGN_UP:
+      return {
+        ...state,
+        signUpData: action.data
+      };
 
     default:
       return {
