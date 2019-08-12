@@ -53,11 +53,21 @@ const reducer = (state = initialState, action) => {
         user: dummyUser
       };
     }
+    case LOG_IN_SUCCESS: {
+      return {
+        ...state
+      };
+    }
+    case LOG_IN_FAILURE: {
+      return {
+        ...state
+      };
+    }
 
     case LOG_OUT: {
       return {
         ...state,
-        isLoggedIn: true,
+        isLoggedIn: false,
         user: null
       };
     }
