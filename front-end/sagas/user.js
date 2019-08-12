@@ -1,5 +1,6 @@
 import {
   all,
+  call,
   put,
   fork,
   take,
@@ -17,6 +18,7 @@ function loginAPI() {
 
 function* login() {
   try {
+    // call 은 동기 요청으로 응답이 다 받아질때까지 기다린다.
     yield call(loginAPI);
     yield put({
       // put은 dispatch랑 동일
@@ -31,14 +33,16 @@ function* login() {
   }
 }
 
+function* hello() {
+  yield delay(1000);
+  yield put({
+    type: "BYE_SAGA"
+  });
+}
+
 function* watchHello() {
   // takeLatest 는 이전 요청이 끝나지 않은게 있다면 이전 요청을 취소합니다.
-  yield takeLatest(HELLO_SAGA, function*() {
-    yield delay(1000);
-    yield put({
-      type: "BYE_SAGA"
-    });
-  });
+  yield takeEvery(HELLO_SAGA, hello);
 }
 
 // function* watchHello() {
@@ -63,14 +67,15 @@ function* watchHello() {
 // }
 
 function* watchLogin() {
-  while (true) {
-    yield take(LOG_IN);
-    // put 은 redux 의 dispatch 역할
-    yield delay(2000);
-    yield put({
-      type: LOG_IN_SUCCESS
-    });
-  }
+  yield takeEvery(LOG_IN, login);
+  // while (true) {
+  //   yield take(LOG_IN);
+  //   // put 은 redux 의 dispatch 역할
+  //   yield delay(2000);
+  //   yield put({
+  //     type: LOG_IN_SUCCESS
+  //   });
+  // }
 }
 
 function* watchSignUp() {}
@@ -79,7 +84,12 @@ export default function* userSaga() {
   // 이벤트 리스너처럼 해당 액션이 실행되기를 기다린다.
   yield all([
     // watchHello(),
-    watchLogin(),
-    watchHello()
+    fork(watchLogin),
+    fork(watchHello)
   ]);
 }
+
+// call, fork
+// 함수 실행의 역할
+// call 은 동기 호출
+// fork 는 비동기 호출
