@@ -30,19 +30,15 @@ export const LOG_IN_FAILURE = "LOG_IN_FAILURE";
 export const LOG_OUT_REQUEST = "LOG_OUT_REQUEST";
 export const LOG_OUT_SUCCESS = "LOG_OUT_SUCCESS";
 export const LOG_OUT_FAILURE = "LOG_OUT_FAILURE";
-
 export const INCREMENT_NUMBER = "INCREMENT_NUMBE";
-
 export const signUpSuccess = {
   type: SIGN_UP_SUCCESS
 };
 
-export const signupAction = data => {
-  return {
-    type: SIGN_UP,
-    data: data
-  };
-};
+export const signupAction = data => ({
+  type: SIGN_UP,
+  data: data
+})
 
 export const loginAction = {
   type: LOG_IN_REQUEST,
@@ -54,6 +50,11 @@ export const loginAction = {
 export const logoutAction = {
   type: LOG_OUT_REQUEST
 };
+
+export const signUp = data => ({
+  type: SIGN_UP_REQUEST,
+  data
+});
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
