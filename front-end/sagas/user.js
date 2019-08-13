@@ -8,7 +8,11 @@ import {
   takeEvery,
   delay
 } from "redux-saga/effects";
-import { LOG_IN, LOG_IN_SUCCESS, LOG_IN_FAILURE } from "../reducers/user";
+import {
+  LOG_IN_REQUEST,
+  LOG_IN_SUCCESS,
+  LOG_IN_FAILURE
+} from "../reducers/user";
 
 const HELLO_SAGA = "HELLO_SAGA";
 
@@ -67,7 +71,7 @@ function* watchHello() {
 // }
 
 function* watchLogin() {
-  yield takeEvery(LOG_IN, login);
+  yield takeEvery(LOG_IN_REQUEST, login);
   // while (true) {
   //   yield take(LOG_IN);
   //   // put 은 redux 의 dispatch 역할
