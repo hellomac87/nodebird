@@ -1,8 +1,8 @@
-import React, { useCallback } from "react";
-import PropTypes from "prop-types";
-import { useSelector, useDispatch } from "react-redux";
-import { Card, Avatar, Button } from "antd";
-import { logoutAction } from "../reducers/user";
+import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { Card, Avatar, Button } from 'antd';
+import { logoutAction } from '../reducers/user';
 
 const UserProfile = props => {
   const { user } = useSelector(state => state.user);
@@ -24,13 +24,10 @@ const UserProfile = props => {
         <div key="twit">
           follower <br />
           {user.followers.length}
-        </div>
+        </div>,
       ]}
     >
-      <Card.Meta
-        avatar={<Avatar>{user.nickname[0]}</Avatar>}
-        title={user.nickname}
-      />
+      <Card.Meta avatar={<Avatar>{user.nickname[0]}</Avatar>} title={user.nickname} />
       <Button onClick={onLogout}>로그아웃</Button>
     </Card>
   );

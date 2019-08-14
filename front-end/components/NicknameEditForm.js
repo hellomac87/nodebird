@@ -1,14 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Form, Input, Button, List, Icon, Card } from "antd";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Form, Input, Button, List, Icon, Card } from 'antd';
 
 const NicknameEditForm = props => {
   return (
     <Form
       style={{
-        marginBottom: "20px",
-        border: "1px solid #d9d9d9",
-        padding: "20px"
+        marginBottom: '20px',
+        border: '1px solid #d9d9d9',
+        padding: '20px',
       }}
     >
       <Input addonBefore="닉네임" />

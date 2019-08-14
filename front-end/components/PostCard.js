@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Button, Card, Icon, Avatar } from "antd";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Button, Card, Icon, Avatar } from 'antd';
 
 const PostCard = ({ post }) => {
   return (
@@ -11,7 +11,7 @@ const PostCard = ({ post }) => {
         <Icon type="retweet" key="retweet" />,
         <Icon type="heart" key="heart" />,
         <Icon type="message" key="message" />,
-        <Icon type="ellipsis" key="ellipsis" />
+        <Icon type="ellipsis" key="ellipsis" />,
       ]}
       extra={<Button>팔로우</Button>}
     >
@@ -29,8 +29,8 @@ PostCard.propTypes = {
     User: PropTypes.object,
     content: PropTypes.string,
     img: PropTypes.string,
-    createdAt: PropTypes.string
-  })
+    createdAt: PropTypes.string,
+  }),
 };
 
 export default PostCard;

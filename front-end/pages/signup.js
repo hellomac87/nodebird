@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from "react";
-import { Form, Input, Checkbox, Button } from "antd";
-import { signupAction } from "../reducers/user";
+import React, { useState, useCallback } from 'react';
+import { Form, Input, Checkbox, Button } from 'antd';
 import { useDispatch } from "react-redux";
+import { signupAction } from "../reducers/user";
 
 export const userInput = (initValue = null) => {
   const [value, setter] = useState(initValue);
@@ -12,10 +12,10 @@ export const userInput = (initValue = null) => {
 };
 
 const Signup = () => {
-  const [id, setId] = useState("");
-  const [nick, setNick] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordCheck, setPasswordCheck] = useState("");
+  const [id, setId] = useState('');
+  const [nick, setNick] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordCheck, setPasswordCheck] = useState('');
   const [term, setTerm] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [termError, setTermError] = useState(false);
@@ -34,7 +34,7 @@ const Signup = () => {
         signupAction({
           id,
           password,
-          nick
+          nick,
         })
       );
       console.log({
@@ -42,7 +42,7 @@ const Signup = () => {
         nick,
         password,
         passwordCheck,
-        term
+        term,
       });
     },
     [password, passwordCheck, term]
@@ -75,7 +75,7 @@ const Signup = () => {
 
   return (
     <>
-      <Form onSubmit={onSubmit} style={{ padding: "10px" }}>
+      <Form onSubmit={onSubmit} style={{ padding: '10px' }}>
         <div>
           <label htmlFor="user-id">아이디</label>
           <br />
@@ -84,41 +84,26 @@ const Signup = () => {
         <div>
           <label htmlFor="user-nick">닉네임</label>
           <br />
-          <Input
-            name="user-nick"
-            required
-            value={nick}
-            onChange={onChangeNickName}
-          />
+          <Input name="user-nick" required value={nick} onChange={onChangeNickName} />
         </div>
         <div>
           <label htmlFor="user-password">비밀번호</label>
           <br />
-          <Input
-            name="user-password"
-            required
-            value={password}
-            onChange={onChangePassword}
-          />
+          <Input name="user-password" required value={password} onChange={onChangePassword} />
         </div>
         <div>
           <label htmlFor="user-pass-chk">비밀번호 체크</label>
           <br />
-          <Input
-            name="user-pass-chk"
-            required
-            value={passwordCheck}
-            onChange={onChangePasswordCheck}
-          />
-          {passwordError && <div style={{ color: "red" }}>비밀번호 불일치</div>}
+          <Input name="user-pass-chk" required value={passwordCheck} onChange={onChangePasswordCheck} />
+          {passwordError && <div style={{ color: 'red' }}>비밀번호 불일치</div>}
         </div>
         <div>
           <Checkbox name="user-term" value={term} onChange={onChangeTerm}>
             약관동의
           </Checkbox>
-          {termError && <div style={{ color: "red" }}>약관 필수</div>}
+          {termError && <div style={{ color: 'red' }}>약관 필수</div>}
         </div>
-        <div style={{ marginTop: "10px" }}>
+        <div style={{ marginTop: '10px' }}>
           <Button type="primary" htmlType="submit">
             가입하기
           </Button>

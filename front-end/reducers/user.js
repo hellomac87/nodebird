@@ -1,9 +1,9 @@
 const dummyUser = {
-  nickname: "haha",
+  nickname: 'haha',
   posts: [],
   followings: [],
   followers: [],
-  signUpData: {}
+  signUpData: {},
 };
 export const initialState = {
   isLoggedIn: false,
@@ -15,45 +15,45 @@ export const initialState = {
   //   isLoggedIn: false
   // }
   user: null,
-  isLoading: false
+  isLoading: false,
 };
 
 // action constatns
-export const SIGN_UP_REQUEST = "SIGN_UP_REQUEST";
-export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
-export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
+export const SIGN_UP_REQUEST = 'SIGN_UP_REQUEST';
+export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
+export const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE';
 
-export const LOG_IN_REQUEST = "LOG_IN_REQUEST";
-export const LOG_IN_SUCCESS = "LOG_IN_SUCCESS";
-export const LOG_IN_FAILURE = "LOG_IN_FAILURE";
+export const LOG_IN_REQUEST = 'LOG_IN_REQUEST';
+export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
+export const LOG_IN_FAILURE = 'LOG_IN_FAILURE';
 
-export const LOG_OUT_REQUEST = "LOG_OUT_REQUEST";
-export const LOG_OUT_SUCCESS = "LOG_OUT_SUCCESS";
-export const LOG_OUT_FAILURE = "LOG_OUT_FAILURE";
-export const INCREMENT_NUMBER = "INCREMENT_NUMBE";
+export const LOG_OUT_REQUEST = 'LOG_OUT_REQUEST';
+export const LOG_OUT_SUCCESS = 'LOG_OUT_SUCCESS';
+export const LOG_OUT_FAILURE = 'LOG_OUT_FAILURE';
+export const INCREMENT_NUMBER = 'INCREMENT_NUMBE';
 export const signUpSuccess = {
-  type: SIGN_UP_SUCCESS
+  type: SIGN_UP_SUCCESS,
 };
 
 export const signupAction = data => ({
-  type: SIGN_UP,
-  data: data
-})
+  type: SIGN_UP_REQUEST,
+  data,
+});
 
 export const loginAction = {
   type: LOG_IN_REQUEST,
   data: {
-    nickname: "HELLO"
-  }
+    nickname: 'HELLO',
+  },
 };
 
 export const logoutAction = {
-  type: LOG_OUT_REQUEST
+  type: LOG_OUT_REQUEST,
 };
 
 export const signUp = data => ({
   type: SIGN_UP_REQUEST,
-  data
+  data,
 });
 
 const reducer = (state = initialState, action) => {
@@ -62,7 +62,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         // loginData: action.data,
-        isLoading: true
+        isLoading: true,
       };
     }
     case LOG_IN_SUCCESS: {
@@ -70,13 +70,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         isLoggedIn: true,
         user: dummyUser,
-        isLoading: false
+        isLoading: false,
       };
     }
 
     case LOG_IN_FAILURE: {
       return {
-        ...state
+        ...state,
       };
     }
 
@@ -84,18 +84,18 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: false,
-        user: null
+        user: null,
       };
     }
     case SIGN_UP_REQUEST:
       return {
         ...state,
-        signUpData: action.data
+        signUpData: action.data,
       };
 
     default:
       return {
-        ...state
+        ...state,
       };
   }
 };

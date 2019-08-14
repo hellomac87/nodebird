@@ -1,10 +1,10 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import Link from "next/link";
-import PropTypes from "prop-types";
-import { Menu, Input, Row, Col } from "antd";
-import LoginForm from "./LoginForm";
-import UserProfile from "./UserProfile";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import Link from 'next/link';
+import PropTypes from 'prop-types';
+import { Menu, Input, Row, Col } from 'antd';
+import LoginForm from './LoginForm';
+import UserProfile from './UserProfile';
 
 const AppLayout = ({ children }) => {
   const { isLoggedIn } = useSelector(state => state.user);
@@ -22,7 +22,7 @@ const AppLayout = ({ children }) => {
           </Link>
         </Menu.Item>
         <Menu.Item key="mail">
-          <Input.Search enterButton style={{ verticalAlign: "middle" }} />
+          <Input.Search enterButton style={{ verticalAlign: 'middle' }} />
         </Menu.Item>
       </Menu>
 
@@ -40,7 +40,7 @@ const AppLayout = ({ children }) => {
 };
 
 AppLayout.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 export default AppLayout;

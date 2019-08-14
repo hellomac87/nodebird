@@ -1,25 +1,22 @@
-import React from "react";
-import createSagaMiddleware from "redux-saga";
-import Head from "next/head";
-import withRedux from "next-redux-wrapper";
-import PropTypes from "prop-types";
-import AppLayout from "../components/AppLayout";
+import React from 'react';
+import createSagaMiddleware from 'redux-saga';
+import Head from 'next/head';
+import withRedux from 'next-redux-wrapper';
+import PropTypes from 'prop-types';
 
-import { createStore, compose, applyMiddleware } from "redux";
-import { Provider } from "react-redux";
+import { createStore, compose, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import AppLayout from '../components/AppLayout';
 
-import reducer from "../reducers";
-import rootSaga from "../sagas";
+import reducer from '../reducers';
+import rootSaga from '../sagas';
 
 const NodeBird = ({ Component, store }) => {
   return (
     <Provider store={store}>
       <Head>
         <title>NodeBird</title>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/antd/3.19.0/antd.css"
-        />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/3.19.0/antd.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/antd/3.19.0/antd.js" />
       </Head>
       <AppLayout>
@@ -31,7 +28,7 @@ const NodeBird = ({ Component, store }) => {
 
 NodeBird.propTypes = {
   Component: PropTypes.func.isRequired,
-  store: PropTypes.object.isRequired
+  store: PropTypes.object.isRequired,
 };
 
 const configureStore = (initialState, options) => {
@@ -39,12 +36,11 @@ const configureStore = (initialState, options) => {
 
   const middlewares = [sagaMiddleware];
   const enhancer =
-    process.env.NODE_ENV === "production"
+    process.env.NODE_ENV === 'production'
       ? compose(applyMiddleware(...middlewares))
       : compose(
           applyMiddleware(...middlewares),
-          !options.isServer &&
-            window.__REDUX_DEVTOOLS_EXTENSION__ !== "undefined"
+          !options.isServer && window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined'
             ? window.__REDUX_DEVTOOLS_EXTENSION__()
             : f => f
         );
