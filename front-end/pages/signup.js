@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { Form, Input, Checkbox, Button } from 'antd';
-import { useDispatch } from "react-redux";
-import { signupAction } from "../reducers/user";
+import { useDispatch } from 'react-redux';
+import { signupAction } from '../reducers/user';
 
 export const userInput = (initValue = null) => {
   const [value, setter] = useState(initValue);
