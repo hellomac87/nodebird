@@ -1,7 +1,13 @@
 import { all, call, put, fork, take, takeLatest, takeEvery, delay } from 'redux-saga/effects';
-import { LOG_IN_REQUEST, LOG_IN_SUCCESS, LOG_IN_FAILURE } from '../reducers/user';
-
-const HELLO_SAGA = 'HELLO_SAGA';
+import axios from 'axios';
+import {
+  LOG_IN_REQUEST,
+  LOG_IN_SUCCESS,
+  LOG_IN_FAILURE,
+  SIGN_UP_REQUEST,
+  SIGN_UP_SUCCESS,
+  SIGN_UP_FAILURE,
+} from '../reducers/user';
 
 function loginAPI() {
   // 서버에 요청을 보내는 부분
@@ -24,39 +30,6 @@ function* login() {
   }
 }
 
-function* hello() {
-  yield delay(1000);
-  yield put({
-    type: 'BYE_SAGA',
-  });
-}
-
-function* watchHello() {
-  // takeLatest 는 이전 요청이 끝나지 않은게 있다면 이전 요청을 취소합니다.
-  yield takeEvery(HELLO_SAGA, hello);
-}
-
-// function* watchHello() {
-//   console.log("before saga");
-//   // take 함수 안에 next가 들어있음
-//   // action 'HELLO_SAGA' 이 디스패치 될때까지 함수를 중단했다가 풀어준다
-//   while (true) {
-//     yield take(HELLO_SAGA);
-//     console.log("hello saga1");
-//     console.log("hello saga2");
-//     console.log("hello saga3");
-//     console.log("hello saga4");
-
-//     // 비동기요청 또는 타이머
-//   }
-
-//   // 반복문으로 횟수 제어 가능
-//   // for(let i=0; i<5; i++){
-//   //   yield take(HELLO_SAGA);
-//   //   console.log("hello saga");
-//   // }
-// }
-
 function* watchLogin() {
   yield takeEvery(LOG_IN_REQUEST, login);
   // while (true) {
@@ -69,14 +42,34 @@ function* watchLogin() {
   // }
 }
 
-function* watchSignUp() {}
+function* signupAPI() {
+  return axios.post('/signup');
+}
+
+function* signup() {
+  try {
+    yield call(signupAPI);
+    yield put({
+      type: SIGN_UP_SUCCESS,
+    });
+  } catch (e) {
+    console.log(e);
+    yield put({
+      type: SIGN_UP_FAILURE,
+    });
+  }
+}
+
+function* watchSignUp() {
+  yield takeEvery(SIGN_UP_REQUEST, signup);
+}
 
 export default function* userSaga() {
   // 이벤트 리스너처럼 해당 액션이 실행되기를 기다린다.
   yield all([
     // watchHello(),
     fork(watchLogin),
-    fork(watchHello),
+    fork(watchSignUp),
   ]);
 }
 

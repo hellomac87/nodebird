@@ -6,16 +6,17 @@ const dummyUser = {
   signUpData: {},
 };
 export const initialState = {
-  isLoggedIn: false,
-  // user: {
-  //   nickname: "haha",
-  //   posts: [{}, {}],
-  //   followings: ["aa", "bb"],
-  //   followers: ["cc", "dd"],
-  //   isLoggedIn: false
-  // }
-  user: null,
-  isLoading: false,
+  isLoggedIn: false, // 로그인 여부
+  isLoggingOut: false, // 로그아웃 시도중
+  isLoggingIn: false, // 로그인 시도중
+  loginErrorReason: '', // 로그인 에러 사유
+  signedUp: false, // 회원가입 성공
+  isSigningUp: false, // 회원가입 시도중
+  signUpErrorReason: '', // 회원가입 실패 사유
+  me: null, // 내 정보
+  followingList: [], // 팔로잉 리스트
+  followerList: [], // 팔로어 리스트
+  userInfo: null, // 남의 정보
 };
 
 // action constatns
@@ -69,7 +70,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: true,
-        user: dummyUser,
+        me: dummyUser,
         isLoading: false,
       };
     }
@@ -77,6 +78,8 @@ const reducer = (state = initialState, action) => {
     case LOG_IN_FAILURE: {
       return {
         ...state,
+        isLoggedIn: false,
+        me: null,
       };
     }
 
@@ -84,7 +87,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: false,
-        user: null,
+        me: null,
       };
     }
     case SIGN_UP_REQUEST:
