@@ -51,7 +51,7 @@ function* signup() {
   try {
     // yield call(signupAPI);
     yield delay(2000);
-    throw new Error('error error error');
+    // throw new Error('error error error');
     yield put({
       type: SIGN_UP_SUCCESS,
     });
