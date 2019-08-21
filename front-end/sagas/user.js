@@ -43,7 +43,7 @@ function* watchLogin() {
 }
 
 function* signupAPI() {
-  return axios.post('/signup');
+  return yield axios.post('/signup');
 }
 
 function* signup() {
