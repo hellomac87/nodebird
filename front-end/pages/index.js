@@ -2,24 +2,11 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PostForm from '../components/PostForm';
 import PostCard from '../components/PostCard';
-import { loginAction, logoutAction } from '../reducers/user';
 
 const Home = () => {
   const dispatch = useDispatch();
   const { user, isLoggedIn } = useSelector(state => state.user);
   const { mainPosts } = useSelector(state => state.post);
-
-  useEffect(() => {
-    dispatch({
-      type: 'HELLO_SAGA',
-    });
-    dispatch({
-      type: 'HELLO_SAGA',
-    });
-    dispatch({
-      type: 'HELLO_SAGA',
-    });
-  }, []);
 
   // useEffect 의 dependency 배열에 아무것도 넣지 않으면
   // componentDidMount 처럼 작동한다.

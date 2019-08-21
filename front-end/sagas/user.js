@@ -16,7 +16,8 @@ function loginAPI() {
 function* login() {
   try {
     // call 은 동기 요청으로 응답이 다 받아질때까지 기다린다.
-    yield call(loginAPI);
+    // yield call(loginAPI);
+    yield delay(2000);
     yield put({
       // put은 dispatch랑 동일
       type: LOG_IN_SUCCESS,
