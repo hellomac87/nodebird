@@ -1,6 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Form, Input, Checkbox, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
+import Router from 'next/router';
 import { SIGN_UP_REQUEST } from '../reducers/user';
 
 export const userInput = (initValue = null) => {
@@ -19,8 +20,15 @@ const Signup = () => {
   const [term, setTerm] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [termError, setTermError] = useState(false);
-  const { isSigningUp } = useSelector(state => state.user);
+  const { me, isSigningUp } = useSelector(state => state.user);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (me) {
+      alert('로그인 했으니 메인페이지로 이동합니다.');
+      Router.push('/');
+    }
+  }, [me && me.id]);
 
   const onSubmit = useCallback(
     e => {

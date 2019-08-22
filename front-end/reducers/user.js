@@ -4,6 +4,7 @@ const dummyUser = {
   followings: [],
   followers: [],
   signUpData: {},
+  id: 1,
 };
 export const initialState = {
   isLoggedIn: false, // 로그인 여부

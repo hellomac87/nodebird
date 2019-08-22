@@ -39,16 +39,14 @@ const PostForm = props => {
       </div>
 
       <div>
-        {imagePath.map((v, i) => {
-          return (
-            <div key={v} style={{ display: 'inline-block' }}>
-              <img src={`http://localhost:3065/${v}`} style={{ width: '200px' }} alt={v} />
-              <div>
-                <Button>저거</Button>
-              </div>
+        {imagePath.map((v, i) => (
+          <div key={v} style={{ display: 'inline-block' }}>
+            <img src={`http://localhost:3065/${v}`} style={{ width: '200px' }} alt={v} />
+            <div>
+              <Button>저거</Button>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
     </Form>
   );
