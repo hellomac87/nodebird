@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
@@ -12,10 +13,14 @@ const AppLayout = ({ children }) => {
     <div>
       <Menu mode="horizontal">
         <Menu.Item key="home">
-          <Link href="/">노드버드</Link>
+          <Link href="/">
+            <a>노드버드</a>
+          </Link>
         </Menu.Item>
         <Menu.Item key="profile">
-          <Link href="/profile">프로필</Link>
+          <Link href="/profile">
+            <a>프로필</a>
+          </Link>
         </Menu.Item>
         <Menu.Item key="mail">
           <Input.Search enterButton style={{ verticalAlign: 'middle' }} />

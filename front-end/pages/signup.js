@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-alert */
 import React, { useState, useCallback, useEffect } from 'react';
 import { Form, Input, Checkbox, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
