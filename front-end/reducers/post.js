@@ -8,6 +8,7 @@ export const initialState = {
       content: '첫번째 게시글',
       img:
         'https://slack-files2.s3-us-west-2.amazonaws.com/avatars/2017-12-19/288981919427_f45f04edd92902a96859_512.png',
+      Comments: [],
     },
   ], // 화면에 보일 post 들
   imagePath: [], // 미리보기 이미지 경로
@@ -17,11 +18,23 @@ export const initialState = {
 };
 
 const dummyPost = {
+  id: 2,
   User: {
     id: 1,
     nickname: 'hellomac',
   },
   content: '나는 더미입니다.',
+  Comments: [],
+};
+
+const dummyComment = {
+  id: 1,
+  User: {
+    id: 1,
+    nickname: 'MR.Lee',
+  },
+  createdAt: new Date(),
+  content: '더미 댓글입니다.',
 };
 export const LOAD_MAIN_POSTS_REQUEST = 'LOAD_MAIN_POSTS_REQUEST';
 export const LOAD_MAIN_POSTS_SUCCESS = 'LOAD_MAIN_POSTS_SUCCESS';
@@ -96,6 +109,37 @@ const reducer = (state = initialState, action) => {
         ...state,
         isAddingPost: false,
         addPostErrorReason: action.error,
+      };
+    }
+
+    case ADD_COMMENT_REQUEST: {
+      return {
+        ...state,
+        isAddingComment: true,
+        addCommentErrorReason: '',
+        commentAdded: false,
+      };
+    }
+    case ADD_COMMENT_SUCCESS: {
+      const postIndex = state.mainPosts.findIndex(
+        v => v.id === action.data.postId,
+      );
+      const post = state.mainPosts[postIndex];
+      const Comments = [...post.Comments, dummyComment];
+      const mainPosts = [...state.mainPosts];
+      mainPosts[postIndex] = { ...post, Comments };
+      return {
+        ...state,
+        isAddingComment: false,
+        mainPosts: [dummyComment, ...state.mainPosts],
+        commentAdded: true,
+      };
+    }
+    case ADD_COMMENT_FAILURE: {
+      return {
+        ...state,
+        isAddingComment: false,
+        addCommentErrorReason: action.error,
       };
     }
 
